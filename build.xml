@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="mosp" default="main" basedir=".">
+	<!-- アプリケーションのwarファイルを作成するためのビルドファイル -->
+	
+	<!-- メインターゲット -->
+	<target name="main" depends="compile, make-war">
+	</target>
+	
+	<!-- コンパイル -->
+	<target name="compile">
+		<mkdir dir="./WEB-INF/classes" />
+		<javac
+			srcdir="./src;./addon"
+			destdir="./WEB-INF/classes"
+			encoding="UTF-8"
+			target="1.8"
+			source="1.8"
+			debug="true"
+			includeantruntime="false"
+		>
+			<classpath refid="classpath" />
+		</javac>
+	</target>
+	
+	<!-- warファイル作成 -->
+	<target name="make-war">
+		<war destfile="./time4.war" webxml="./WEB-INF/web.xml">
+			<fileset dir="./">
+				<include name="pub/**" />
+				<include name="jsp/**" />
+				<include name="template/**" />
+				<exclude name="template/**/*.jrxml" />
+				<include name="sql/**/*.sql" />
+				<include name="logs" />
+				<include name="META-INF/context.xml" />
+				<include name="WEB-INF/xml/user" />
+				<include name="WEB-INF/xml/**/*.xml" />
+			</fileset>
+			<classes dir="./WEB-INF/classes" />
+			<lib dir="./WEB-INF/lib" />
+		</war>
+	</target>
+	
+	<!-- クラスパス -->
+	<path id="classpath">
+		<pathelement location="./javax.servlet-api-4.0.1.jar" />
+		<path refid="lib.classpath" />
+	</path>
+	<path id="lib.classpath">
+		<fileset dir="./WEB-INF/lib">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+	
+</project>
