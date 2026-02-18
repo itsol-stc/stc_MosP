@@ -110,10 +110,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</Application>
 	
 	<!-- パラメータログレベル(500：FINE) -->
-	<Application key="LogLevelParameter">500</Application>
+	<Application key="LogLevelParameter">0</Application>
 	
 	<!-- 参照SQLログレベル(500：FINE) -->
-	<Application key="LogLevelSqlSelect">500</Application>
+	<Application key="LogLevelSqlSelect">0</Application>
 	
 	<!-- 登録SQLログレベル(500：FINE) -->
 	<Application key="LogLevelSqlRegist">500</Application>
@@ -130,7 +130,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	
 	<!-- アプリケーションログレベル(800：INFO) -->
 	<Application key="LogLevelApplication">
-		800
+		0
 	</Application>
 	
 	<!-- デバッグログレベル(800：INFO) -->
