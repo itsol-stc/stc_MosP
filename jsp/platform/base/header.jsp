@@ -30,7 +30,13 @@ import = "jp.mosp.framework.utils.MospUtility"
 import = "jp.mosp.platform.constant.PlatformConst"
 import = "jp.mosp.platform.utils.PfNameUtility"
 import = "jp.mosp.platform.portal.action.LogoutAction"
-%><%
+%>
+
+<!-- ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 -->
+<%@ page import = "jp.mosp.time.utils.TimeUtility" %>
+<!-- ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 -->
+
+<%
 MospParams params = (MospParams)request.getAttribute(MospConst.ATT_MOSP_PARAMS);
 BaseVo vo = params.getVo();
 String uri = HtmlUtility.escapeHTML(PfNameUtility.questionAndAnswerURI(params));
@@ -48,12 +54,34 @@ if (params.getUser() != null && params.getApplicationPropertyBool(MospConst.APP_
 	<img class="Logo" src="<%= params.getApplicationProperty("LogoImage") %>" />
 </div>
 <div class="TitleBar">
-	<span id="lblTitle"><%= params.getApplicationProperty(MospConst.APP_TITLE) %>&nbsp;</span>
-	<span id="lblVersion"><%= params.getApplicationProperty(MospConst.APP_VERSION) %></span>
-<%
-if (params.getUser() != null) {
-%>
-	<span id="lblUserName"><%= HtmlUtility.escapeHTML(params.getUser().getUserName()) %></span>
+
+<!-- ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 -->
+<%    
+boolean isTimeCardOnlyUser = TimeUtility.isTimeCardOnlyUser(params);    
+%>    
+<%    
+if (isTimeCardOnlyUser) {    
+%>    
+	<span id="lblTitle"></span>    
+<%    
+} else {    
+%>    
+	<span id="lblTitle"><%= params.getApplicationProperty(MospConst.APP_TITLE) %>&nbsp;</span>    
+<%    
+}  
+if (isTimeCardOnlyUser) {  
+%>    
+	<span id="lblVersion"></span>    
+<%    
+} else {    
+%>    
+	<span id="lblVersion"><%= params.getApplicationProperty(MospConst.APP_VERSION) %></span>    
+<%    
+}  
+if (params.getUser() != null && !isTimeCardOnlyUser) {    
+%>    
+	<span id="lblUserName"><%= HtmlUtility.escapeHTML(params.getUser().getUserName()) %></span>    
+<!-- ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 -->
 <%
 }
 if (params.getApplicationPropertyBool(PlatformConst.APP_FORUM_LINK_DISABLED) == false) {

@@ -40,8 +40,19 @@ if (vo == null) {
 	// 処理終了
 	return;
 }
+
+// ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 
+// 打刻画面表示用ユーザーの場合、非表示に設定する
+String displayStyle = "";  
+if (TimeUtility.isTimeCardOnlyUser(params)) {  
+    displayStyle = "style=\"display: none;\"";  
+}  
+// ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 
+
 %>
-<div class="List" id="divApprovalList">
+<!-- ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 -->
+<div class="List" id="divApprovalList" <%= displayStyle %>>
+<!-- ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 -->
 	<table class="LeftListTable">
 		<tr>
 			<th class="ListSelectTh"><%= params.getName("Approval") %><%= params.getName("Type") %></th>

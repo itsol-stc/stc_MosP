@@ -17,6 +17,7 @@
  */
 package jp.mosp.time.bean.impl;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -124,15 +125,24 @@ public class TimeRecordBean extends AttendanceListRegistBean implements TimeReco
 		targetDate = getTargetDate(recordTime);
 		// ポータル時刻を打刻
 		recordPortalTime(personalId, targetDate, recordTime, PortalTimeCardBean.RECODE_START_WORK);
-		// 勤怠データ取得
-		AttendanceDtoInterface dto = attendanceReference.findForKey(this.personalId, targetDate);
-		// 勤怠情報確認
-		if (dto != null) {
-			// エラーメッセージ設定
-			mospParams.addErrorMessage(TimeMessageUtility.MSG_ALREADY_RECORDED, DateUtility.getStringDate(targetDate),
-					mospParams.getName("WorkManage"), mospParams.getName("RecordTime"));
+		// ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/7/4 始業・終業の二重打刻を不可とする仕様を追加-追加　塩見 -->
+		if (mospParams.hasErrorMessage()) {
 			return null;
 		}
+		// ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/7/4 始業・終業の二重打刻を不可とする仕様を追加-追加　塩見 -->
+		// 勤怠データ取得
+		AttendanceDtoInterface dto = attendanceReference.findForKey(this.personalId, targetDate);
+
+		// ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/7/4 始業・終業の二重打刻を不可とする仕様を追加-削除　塩見 -->
+		// 勤怠情報確認
+		// if (dto != null) {
+		// 	// エラーメッセージ設定
+		// 	mospParams.addErrorMessage(TimeMessageUtility.MSG_ALREADY_RECORDED, DateUtility.getStringDate(targetDate),
+		// 			mospParams.getName("WorkManage"), mospParams.getName("RecordTime"));
+		// 	return null;
+		// }
+		// ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/7/4 始業・終業の二重打刻を不可とする仕様を追加-削除　塩見 -->
+
 		// 設定適用エンティティを取得
 		ApplicationEntity application = applicationReference.getApplicationEntity(personalId, targetDate);
 		// 申請エンティティを取得
@@ -200,24 +210,49 @@ public class TimeRecordBean extends AttendanceListRegistBean implements TimeReco
 		this.personalId = personalId;
 		// 対象日設定及び対象日の勤怠情報取得
 		AttendanceDtoInterface dto = setTargetDate(recordTime, TimeMessageUtility.getNameEndWork(mospParams));
-		// 処理結果確認
+
+		// ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/8/13 始業打刻データが存在しない状態で終業打刻処理を可能にする-追加　塩見 -->
+		// 対象日の勤怠情報が存在しない場合、作成する
+		if (dto == null) {
+			dto = getAttendanceDto(null, null, null, false, false, false, false, false);
+		}
+		// ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/8/13 始業打刻データが存在しない状態で終業打刻処理を可能にする-追加　塩見 -->
+
+		// ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/8/29 出勤日・非出勤日に関わらず終業打刻を可能にする-変更　塩見 -->
+		// // 処理結果確認
+		// if (mospParams.hasErrorMessage()) {
+		// 	return null;
+		// }
+		mospParams.getErrorMessageList().clear();
+		// ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/8/29 出勤日・非出勤日に関わらず終業打刻を可能にする-変更　塩見 -->
+
+		// ポータル時刻を打刻
+		recordPortalTime(personalId, targetDate, recordTime, PortalTimeCardBean.RECODE_END_WORK);
+		// ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/7/4 始業・終業の二重打刻を不可とする仕様を追加-変更　塩見 -->
 		if (mospParams.hasErrorMessage()) {
 			return null;
 		}
-		// ポータル時刻を打刻
-		recordPortalTime(personalId, targetDate, recordTime, PortalTimeCardBean.RECODE_END_WORK);
+		// ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/7/4 始業・終業の二重打刻を不可とする仕様を追加-変更　塩見 -->
 		// 休憩戻確認
 		checkRestEnd();
 		// ワークフロー番号設定
 		if (mospParams.hasErrorMessage()) {
 			return null;
 		}
+		// ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/8/29 出勤日・非出勤日に関わらず終業打刻を可能にする-変更　塩見 -->
+		if (dto == null){
+			return null;
+		}
+		// ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/8/29 出勤日・非出勤日に関わらず終業打刻を可能にする-変更　塩見 -->
+
 		// 設定適用エンティティを取得
 		ApplicationEntity applicationEntity = applicationReference.getApplicationEntity(personalId, targetDate);
 		// 勤怠設定エンティティを取得
 		TimeSettingEntityInterface timeSetting = timeSettingReference.getEntity(applicationEntity.getTimeSettingDto());
-		// 終業打刻時承認状態設定を取得(デフォルト：申請)
-		int endWorkAppliStatus = timeSetting.getLimit(TYPE_RS_END_WORK_APPLI_STATUS, TYPE_RECORD_APPLY);
+		// ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/25 終業打刻時承認状態を「申請」から「下書」に変更-変更　塩見 -->
+		// 終業打刻時承認状態設定を取得(デフォルト：下書)
+		int endWorkAppliStatus = timeSetting.getLimit(TYPE_RS_END_WORK_APPLI_STATUS, TYPE_RECORD_DRAFT);
+		// ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/25 終業打刻時承認状態を「申請」から「下書」に変更-変更　塩見 -->
 		// 終業打刻時承認状態設定が申請である場合
 		if (endWorkAppliStatus == TYPE_RECORD_APPLY) {
 			// 申請
@@ -994,28 +1029,56 @@ public class TimeRecordBean extends AttendanceListRegistBean implements TimeReco
 	 * @throws MospException 勤怠情報の取得に失敗した場合
 	 */
 	protected AttendanceDtoInterface setTargetDate(Date recordTime, String process) throws MospException {
+
+		// ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/8/13 始業打刻データが存在しない状態で終業打刻処理を可能にする-変更　塩見 -->
+
 		// 勤怠データ取得
 		AttendanceDtoInterface dto = attendanceReference.findForKey(personalId, recordTime);
-		// 打刻した日の勤怠情報が存在しない場合
-		if (dto == null) {
-			// 前日の勤怠を取得
-			Date beforeDate = addDay(recordTime, -1);
-			dto = attendanceReference.findForKey(personalId, beforeDate);
-			// 前日の勤怠を確認
-			if (dto != null && dto.getEndTime() == null) {
-				// 対象日として前日を設定(深夜に日付を超えて打刻した場合等)
-				targetDate = beforeDate;
-			} else {
-				// エラーメッセージ設定
-				TimeMessageUtility.addErrorStratWorkNotRecorded(mospParams, recordTime, process);
+		// 退勤かつ打刻日時が0時から4時49分までの場合、前日の勤怠情報を対象とする
+		if ("退勤".equals(process)) {
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(recordTime);
+			int hour = cal.get(Calendar.HOUR_OF_DAY);
+			int minute = cal.get(Calendar.MINUTE);
+
+			if (hour < 5 || (hour == 4 && minute <= 49)) {
+				recordTime = addDay(recordTime, -1);
 			}
-		} else if (dto.getEndTime() != null) {
-			// エラーメッセージ設定(終業時刻が既に登録されている場合)
-			TimeMessageUtility.addErrorEndWorkAlreadyRecorded(mospParams, recordTime);
-		} else {
-			targetDate = DateUtility.getDate(recordTime);
 		}
+		// 対象日を設定
+		targetDate = DateUtility.getDate(recordTime);
+
 		return dto;
+
+		// // 打刻した日の勤怠情報が存在しない場合
+		// if (dto == null) {
+		// 	// // 前日の勤怠を取得
+		// 	// Date beforeDate = addDay(recordTime, -1);
+		// 	// dto = attendanceReference.findForKey(personalId, beforeDate);
+		// 	// // 前日の勤怠を確認
+		// 	// if (dto != null && dto.getEndTime() == null) {
+		// 	// // 対象日として前日を設定(深夜に日付を超えて打刻した場合等)
+		// 	// targetDate = beforeDate;
+		// 	// } else {
+		// 	// // エラーメッセージ設定
+		// 	// TimeMessageUtility.addErrorStratWorkNotRecorded(mospParams, recordTime,
+		// 	// process);
+		// 	// }
+		// 	targetDate = DateUtility.getDate(recordTime);
+		// } else if (dto.getEndTime() != null) {
+		// 	// エラーメッセージ設定(終業時刻が既に登録されている場合)
+		// 	// ▼ 2025年7月11日 終業打刻の複数回打刻を可能にする-削除 塩見
+		// 	// TimeMessageUtility.addErrorEndWorkAlreadyRecorded(mospParams, recordTime);
+		// 	// ▲ 2025年7月11日 終業打刻の複数回打刻を可能にする-削除 塩見
+		// 	// ▼ 2025年7月13日 終業打刻の複数回打刻を可能にする-追加 塩見
+		// 	targetDate = DateUtility.getDate(recordTime);
+		// 	// ▲ 2025年7月13日 終業打刻の複数回打刻を可能にする-追加 塩見
+		// } else {
+		// 	targetDate = DateUtility.getDate(recordTime);
+		// }
+		// return dto;
+
+		// ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/8/13 始業打刻データが存在しない状態で終業打刻処理を可能にする-変更　塩見 -->
 	}
 	
 	/**

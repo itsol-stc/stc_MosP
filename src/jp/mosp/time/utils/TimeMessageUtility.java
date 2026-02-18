@@ -51,7 +51,15 @@ public class TimeMessageUtility {
 	 * %1%に%2%を%3%しました。<br>
 	 */
 	public static final String		MSG_RECORD_TIME						= "TMI0004";
-	
+
+	// ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 -->
+	/**
+	 * メッセージコード(打刻成功時：社員指定)。<br>
+	 * 　%1%に%2%を%3%しました。<br>
+	 */
+	public static final String		MSG_RECORD_TIME_EMPLOYEE			= "TMI1004";
+	// ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 -->
+
 	/**
 	 * メッセージコード(付与日数等の小数が不正である場合)。<br>
 	 * %1%には0.5で割り切れる数値を入力してください。<br>
@@ -261,6 +269,37 @@ public class TimeMessageUtility {
 	 */
 	public static final String		MSG_COLOR_SETTING_DESCRIPTION		= "TMI0012";
 	
+	// ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 -->
+	/**
+	 * メッセージコード(社員検索表示)。<br>
+	 * 出勤計画：%1%\n退勤計画：%2% <br>
+	 */
+	public static final String		MSG_SEARCH_EMPLOYEE_INF				= "TMI0013";
+	// ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 -->
+
+	// ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/7/10 シフト登録がない場合はメッセージに計画時間を出さない-追加　塩見 -->
+	/**
+	 * メッセージコード(社員検索表示)。<br>
+	 * シフト登録がありません　【出勤時間】　　【計画時間】 <br>
+	 */
+	public static final String		MSG_SEARCH_EMPLOYEE_WORKTYPECODENULL	= "TMI0014";
+	// ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/7/10 シフト登録がない場合はメッセージに計画時間を出さない-追加　塩見 -->
+
+	// ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/8/29 打刻画面の社員検索機能で該当社員が存在しない場合のメッセージを追加-追加　塩見 -->
+	/**
+	 * メッセージコード(社員検索表示)。<br>
+	 * 社員番号が勤怠管理システムに登録されていません。　【出勤時間】　　【計画時間】 <br>
+	 */
+	public static final String		MSG_SEARCH_EMPLOYEE_NAMENULL	= "TMI0015";
+	// ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/8/29 打刻画面の社員検索機能で該当社員が存在しない場合のメッセージを追加-追加　塩見 -->
+
+	// ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/8/26 月給者に対して有休休暇の午前中・午後休のチェック処理を追加-追加　塩見 -->
+	/**
+	 * 休暇申請(前半休・後半休妥当性チェック)。<br>
+	 * %1%は%2%のみ取得可能です。%3を取得する場合は[カレンダ設定]で勤務形態を変更してください。 <br>
+	 */
+	public static final String		MSG_HOLODAY_REQUEST_HALF_HOLIDAYCHECK	= "TMW0347";
+	// ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/8/26 月給者に対して有休休暇の午前中・午後休のチェック処理を追加-追加　塩見 -->
 	
 	/**
 	 * 他クラスからのインスタンス化を防止する。<br>
@@ -356,6 +395,18 @@ public class TimeMessageUtility {
 		mospParams.addMessage(MSG_RECORD_TIME, recordTime, getNameStartWork(mospParams), getNameRecordTime(mospParams));
 	}
 	
+	// ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 -->
+	/**
+	 * 始業を打刻しました（社員指定）。<br>
+	 * @param mospParams MosP処理情報
+	 * @param recordTime 打刻時刻
+	 * @param employeeName 社員名
+	 */
+	public static void addMessageRecordStartWorkForEmployee(MospParams mospParams, String recordTime) {
+		mospParams.addMessage(MSG_RECORD_TIME_EMPLOYEE, recordTime, getNameStartWork(mospParams), getNameRecordTime(mospParams));
+	}
+	// ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 -->
+
 	/**
 	 * 終業を打刻しました。<br>
 	 * @param mospParams MosP処理情報
@@ -365,6 +416,18 @@ public class TimeMessageUtility {
 		mospParams.addMessage(MSG_RECORD_TIME, recordTime, getNameEndWork(mospParams), getNameRecordTime(mospParams));
 	}
 	
+	// ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 -->
+	/**
+	 * 終業を打刻しました（社員指定）。<br>
+	 * @param mospParams MosP処理情報
+	 * @param recordTime 打刻時刻
+	 * @param employeeName 社員名
+	 */
+	public static void addMessageRecordEndWorkForEmployee(MospParams mospParams, String recordTime) {
+		mospParams.addMessage(MSG_RECORD_TIME_EMPLOYEE, recordTime, getNameEndWork(mospParams), getNameRecordTime(mospParams));
+	}
+	// ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 -->
+
 	/**
 	 * 休憩入りを打刻しました。<br>
 	 * @param mospParams MosP処理情報
@@ -432,6 +495,38 @@ public class TimeMessageUtility {
 		mospParams.addMessage(MSG_RECORD_TIME, recordTime, getNameEndWorkTime(mospParams), getNameUpdate(mospParams));
 	}
 	
+	// ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 -->
+	/**
+	 * 社員情報を取得しました。<br>
+	 * @param mospParams MosP処理情報
+	 */
+	public static void addMessageSearchEmployeeInf(MospParams mospParams, Date scheduledStartTime, Date scheduledEndTime) {
+		mospParams.addMessage(MSG_SEARCH_EMPLOYEE_INF, DateUtility.getStringTime(scheduledStartTime), DateUtility.getStringTime(scheduledEndTime));
+	}
+	// ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 -->
+
+	// ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/7/10 シフト登録がない場合はメッセージに計画時間を出さない-追加　塩見 -->
+	/**
+	 * 本日は出勤日ではありません。休日として登録されているか、カレンダマスタ未登録です。<br>
+	 * シフト登録がない場合に出力するメッセージ
+	 * @param mospParams MosP処理情報
+	 */
+	public static void addMessageSearchEmployeeWorkTypeCodeNull(MospParams mospParams) {
+		mospParams.addMessage(MSG_SEARCH_EMPLOYEE_WORKTYPECODENULL);
+	}
+	// ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/7/10 シフト登録がない場合はメッセージに計画時間を出さない-追加　塩見 -->
+
+	// ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/8/29 打刻画面の社員検索機能で該当社員が存在しない場合のメッセージを追加-追加　塩見 -->
+	/**
+	 * 本日は出勤日ではありません。休日として登録されているか、カレンダマスタ未登録です。<br>
+	 * シフト登録がない場合に出力するメッセージ
+	 * @param mospParams MosP処理情報
+	 */
+	public static void addMessageSearchEmployeeNameNull(MospParams mospParams) {
+		mospParams.addMessage(MSG_SEARCH_EMPLOYEE_NAMENULL);
+	}
+	// ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/8/29 打刻画面の社員検索機能で該当社員が存在しない場合のメッセージを追加-追加　塩見 -->
+
 	/**
 	 * YYYY/MM/DDは既に始業が登録されているため、打刻できません。勤怠詳細を確認してください。(TMW0301)<br>
 	 * @param mospParams MosP処理情報

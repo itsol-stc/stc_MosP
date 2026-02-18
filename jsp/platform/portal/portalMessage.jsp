@@ -31,7 +31,13 @@ import = "jp.mosp.platform.utils.PfNameUtility"
 import = "jp.mosp.platform.bean.portal.impl.PortalMessageBean"
 import = "jp.mosp.platform.portal.action.PortalAction"
 import = "jp.mosp.platform.portal.vo.PortalVo"
-%><%
+%>
+
+<!-- ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 -->
+<%@ page import = "jp.mosp.time.utils.TimeUtility" %>
+<!-- ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 -->
+
+<%
 //VOを準備
 MospParams params = (MospParams)request.getAttribute(MospConst.ATT_MOSP_PARAMS);
 PortalVo vo = (PortalVo)params.getVo();
@@ -40,8 +46,19 @@ if (vo == null) {
 	// 処理終了
 	return;
 }
+
+// ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 
+// 打刻画面表示用ユーザーの場合、非表示に設定する
+String displayStyle = "";  
+if (TimeUtility.isTimeCardOnlyUser(params)) {  
+    displayStyle = "style=\"display: none;\"";  
+}  
+// ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 
+
 %>
-<div class="List" id="divInformation">
+<!-- ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 -->
+<div class="List" id="divInformation" <%= displayStyle %>>
+<!-- ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 -->
 	<table class="ListTable" id="tblHeader">
 		<tr><th class="PortalTableTh" colspan="2"><span class="TitleTh"><%= PfNameUtility.message(params) %></span></th></tr>
 	</table>

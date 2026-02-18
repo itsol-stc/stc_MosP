@@ -43,6 +43,10 @@ import jp.mosp.framework.utils.MospUtility;
 import jp.mosp.framework.utils.RoleUtility;
 import net.arnx.jsonic.JSON;
 
+// ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 -->
+import jp.mosp.time.utils.TimeUtility;
+// ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 -->
+
 /**
  * MosPフレームワークのFrontController。<br><br>
  * 
@@ -649,8 +653,22 @@ public class Controller extends HttpServlet {
 		}
 		// セッション保持情報をセッションに設定
 		session.setAttribute(ATT_STORED_INFO, storedInfo);
-		// セッション保持時間(秒)設定
-		session.setMaxInactiveInterval(ppt.getApplicationProperty(APP_SESSION_INTERVAL, 0));
+
+		// ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 -->
+		// セッション保持時間設定用の変数を定義
+		int sessionInterval = ppt.getApplicationProperty(APP_SESSION_INTERVAL, 0); 
+
+		// 打刻画面表示用ユーザーの場合はセッション保持時間に0秒（無制限）を格納
+		if (TimeUtility.isTimeCardOnlyUser(mospParams)) {  
+    	sessionInterval = 0; // 0を格納（セッション無制限）  
+		} 
+		// ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 -->
+
+		// ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-変更　塩見 -->
+		// セッション保持時間(秒)を設定
+		session.setMaxInactiveInterval(sessionInterval);
+		//session.setMaxInactiveInterval(ppt.getApplicationProperty(APP_SESSION_INTERVAL, 0));
+		// ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-変更　塩見 -->
 		// 処理シーケンス設定
 		if (session.getAttribute(ATT_PROC_SEQ) == null) {
 			session.setAttribute(ATT_PROC_SEQ, String.valueOf(0));

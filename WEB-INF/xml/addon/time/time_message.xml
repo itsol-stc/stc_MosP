@@ -400,6 +400,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<Message key="TMW0345">
 		<MessageBody>入力された半休と時間休で重複している箇所があります。半休と時間休を同日に取得する場合、時間休は半休取得時の勤務形態の時間内(%1%)に申請してください。</MessageBody>
 	</Message>
+	<!-- ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/7/4 始業・終業の二重打刻を不可とする仕様を追加-追加　塩見 -->
+	<Message key="TMW0346">
+		<MessageBody>%1%はすでに%2%が記録されています。二重打刻はできません。</MessageBody>
+	</Message>
+	<!-- ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/7/4 始業・終業の二重打刻を不可とする仕様を追加-追加　塩見 -->
 	
 	<!-- Information -->
 	<Message key="TMI0001">
@@ -414,6 +419,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<Message key="TMI0004">
 		<MessageBody>%1%に%2%を%3%しました。</MessageBody>
 	</Message>
+	<!-- ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 -->
+	<Message key="TMI1004">
+		<MessageBody>%1%　%2%に%3%しました。</MessageBody>
+	</Message>
+	<!-- ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 -->
 	<Message key="TMI0005">
 		<MessageBody>(下書/申請はまだ完了していません。)</MessageBody>
 	</Message>
@@ -426,7 +436,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<Message key="TMI0012">
 		<MessageBody>この時間を超えると、%1%の「%2%」に%3%色で時間が表示されます。</MessageBody>
 	</Message>
-	
+	<!-- ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/7/7 打刻機能カスタマイズ-追加　塩見 -->
+	<Message key="TMI0013">
+		<MessageBody>【出勤計画】%1%　【退勤計画】%2%</MessageBody>
+	</Message>	
+	<!-- ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/7/7 打刻機能カスタマイズ-追加　塩見 -->
+
+	<!-- ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/8/13 打刻画面の社員検索機能で非出勤日に表示するメッセージを変更-追加　塩見 -->
+	<Message key="TMI0014">
+		<MessageBody>本日は出勤日ではありません。休日として登録されているか、カレンダマスタ未登録です。</MessageBody>
+	</Message>	
+	<!-- ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/8/13 打刻画面の社員検索機能で非出勤日に表示するメッセージを変更-追加　塩見 -->
+
+	<!-- ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/8/29 打刻画面の社員検索機能で該当社員が存在しない場合のメッセージを追加-追加　塩見 -->
+	<Message key="TMI0015">
+		<MessageBody>社員番号が勤怠管理システムに登録されていません。</MessageBody>
+	</Message>	
+	<!-- ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/8/29 打刻画面の社員検索機能で該当社員が存在しない場合のメッセージを追加-追加　塩見 -->
+
 	<!-- Question -->
 	<Message key="TMQ3001">
 		<MessageBody>%1%年%2%月の%3%をします。よろしいですか。</MessageBody>

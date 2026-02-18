@@ -28,19 +28,38 @@ import = "jp.mosp.framework.base.TopicPath"
 import = "jp.mosp.framework.constant.MospConst"
 import = "jp.mosp.framework.utils.TopicPathUtility"
 import = "jp.mosp.platform.base.PlatformVo"
-%><%
+%>
+
+<!-- ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 -->
+<%@ page import = "jp.mosp.time.utils.TimeUtility" %>
+<!-- ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 -->
+
+<%
 MospParams params = (MospParams)request.getAttribute(MospConst.ATT_MOSP_PARAMS);
 BaseVo vo = params.getVo();
 if (params.getUser() == null) {
 	return;
 }
+
+// ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 
+// 打刻画面表示用ユーザーの場合、非表示に設定する
+String displayStyle = "";  
+if (TimeUtility.isTimeCardOnlyUser(params)) {  
+    displayStyle = "style=\"display: none;\"";  
+}  
+// ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 
+
 %>
-<table class="MenuTable">
+
+<!-- ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 -->
+<table class="MenuTable" <%= displayStyle %>>
 	<tr id="trMainMenu"></tr>
 </table>
-<div class="MenuTab" id="divSubMenu">
+<div class="MenuTab" id="divSubMenu"  <%= displayStyle %>>
 </div>
-<div class="TopicPath">
+<div class="TopicPath"  <%= displayStyle %>>
+<!-- ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 -->
+
 <%
 int i = 0;
 for (TopicPath topicPath : params.getTopicPathList()) {

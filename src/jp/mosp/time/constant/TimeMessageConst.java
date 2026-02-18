@@ -452,4 +452,11 @@ public final class TimeMessageConst {
 	 */
 	public static final String	MSG_HALF_SUBHOLIDAY_REQUEST							= "TMI0006";
 	
+	// ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/7/4 始業・終業の二重打刻を不可とする仕様を追加-追加　塩見 -->
+	/**
+	 * 半振出申請時のメッセージ。<br>
+	 */
+	public static final String	MSG_DUPLICATE_TIME_ENTRY							= "TMW0346";
+	// ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/7/4 始業・終業の二重打刻を不可とする仕様を追加-追加　塩見 -->
+	
 }

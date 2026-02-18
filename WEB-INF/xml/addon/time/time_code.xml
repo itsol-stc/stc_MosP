@@ -3501,4 +3501,32 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<ViewIndex>2</ViewIndex>
 		</CodeItem>
 	</Code>
+	<!-- ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 -->
+	<Code key="TimeCardOnlyUsers">  
+		<!-- keyにユーザーIDを入力 -->
+		<CodeItem key="dakoku_stc1">  
+			<ItemName>#</ItemName>  
+			<ViewIndex>1</ViewIndex>  
+		</CodeItem>  
+		<CodeItem key="dakoku_stc2">  
+			<ItemName>#</ItemName>  
+			<ViewIndex>2</ViewIndex>  
+		</CodeItem>  
+		<CodeItem key="dakoku_stc3">  
+			<ItemName>#</ItemName>  
+			<ViewIndex>3</ViewIndex>  
+		</CodeItem>  
+	</Code>
+	<!-- ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 -->
+
+	<!-- ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/19 メッセージリフレッシュ機能-追加　塩見 -->
+	<Code key="MessageRefreshTime">  
+	    <CodeItem key="MessageRefreshTime">  
+			<!-- ItemNameにメッセージリフレッシュタイムを入力 -->
+    	    <ItemName>10</ItemName>  
+        	<ViewIndex>1</ViewIndex>  
+    	</CodeItem>  
+	</Code>
+	<!-- ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/19 メッセージリフレッシュ機能-追加　塩見 -->
+
 </MosP>

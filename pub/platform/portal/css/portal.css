@@ -1,4 +1,5 @@
 @CHARSET "UTF-8";
+
 /*
  * MosP - Mind Open Source Project
  * Copyright (C) esMind, LLC  https://www.e-s-mind.com/
@@ -62,8 +63,8 @@
 /**
  * 空白欄(td)
  */
-#divTimeCard  .TimeCardDateTd {
-	font-size:15px;
+#divTimeCard .TimeCardDateTd {
+	font-size: 15px;
 }
 
 #divTimeCard .TimeCardTimeTd {
@@ -195,8 +196,8 @@
  * 左寄せ一覧表示欄(table)。
  */
 .LeftListNonUpperTable {
-	float:left;
-	width:980px;
+	float: left;
+	width: 980px;
 }
 
 /**
@@ -206,59 +207,228 @@
 	width: 5px;
 	border-top: none;
 	border-bottom: none;
-	border-left:none;
-	border-right:none;
+	border-left: none;
+	border-right: none;
 	background-color: #F8F8F8;
 }
-#divApprovalList  .SelectTitleTd {
+
+#divApprovalList .SelectTitleTd {
 	border: 1px solid;
-	text-align:center;
-	background-color: #FFFFFF;	
-	width:270px;
+	text-align: center;
+	background-color: #FFFFFF;
+	width: 270px;
 
 }
-#divApprovalList  .EditSelectTh {
-	width:280px;
+
+#divApprovalList .EditSelectTh {
+	width: 280px;
 }
 
-#divApprovalList  .SelectTd {
-	width:120px;
-		
+#divApprovalList .SelectTd {
+	width: 120px;
+
 }
 
-#divApprovalList  .NonTopBottomSelectTd {
-	width:150px;
+#divApprovalList .NonTopBottomSelectTd {
+	width: 150px;
 	border-top: none;
 	border-bottom: none;
-	border-left:1px solid;;
-	border-right:1px solid;
-	text-align:center;
-	background-color: #F8F8F8;	
+	border-left: 1px solid;
+	;
+	border-right: 1px solid;
+	text-align: center;
+	background-color: #F8F8F8;
 
 }
 
-#divApprovalList  .NonSelectTd {
-	width:150px;
-	border:1px solid;
-	text-align:center;
-	background-color: #F8F8F8;	
+#divApprovalList .NonSelectTd {
+	width: 150px;
+	border: 1px solid;
+	text-align: center;
+	background-color: #F8F8F8;
 
 }
 
-#divApprovalList  .ButtonTd {
-	width:150px;
+#divApprovalList .ButtonTd {
+	width: 150px;
 	border: 1px solid;
 	border_left: 0px solid;
-	text-align:center;
+	text-align: center;
 	background-color: #FFFFFF;
 
 }
-#divApprovalList  .TitleTd {
+
+#divApprovalList .TitleTd {
 	font-weight: bold;
 	font-size: 15px;
-	width:200px;
+	width: 200px;
 
 }
 
+/* ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/18 打刻画面カスタマイズ-追加　塩見 */
+
+/* ヘッダーレイアウト */
+.stcCustomHeader{
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: space-between;
+    align-items: center;
+}
+
+.stcCustomHeader .TitleBar{
+	display: none;
+}
+
+.stcCustomHeader .Logo_Saikaya{
+	width: 50px;
+	height: 50px;
+}
+
+/* 打刻欄レイアウト */
+.stcCustomTimeCard {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	flex-direction: column;
+}
+
+.stcCustomTimeCardDateTimeDiv{
+	width: 100%;
+	text-align: center;
+}
+
+#stcCustomTimeCardDate{
+	font-size: 35px;
+	margin: 10px auto 20px auto;
+}
+
+#stcCustomTimeCardTime{
+	font-size: 110px;
+	margin: 0 auto 25px auto;
+}
+
+.EmpSearchField{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	align-items: center;
+	flex-direction: row;
+	margin: 0 auto 0 auto;
+	gap : 5px;
+}
+
+.EmpSearchTitleTd {
+	padding-right: 10px;
+	font-size: 30px;
+}
+
+.EmpSearchInputText {
+	width: 220px;
+	height: 40px;
+	font-size: 30px;
+	padding: 5px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+.stcCustomBtn{
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+.stcCustomTime {
+    margin-left: -140px;
+}
+
+.stcCustomTime .stcCustomBtn{
+	width: 350px;
+	height: 170px;
+	font-size: 95px;
+	background-color: #beceff7d;
+	border: 1px solid royalblue;
+}
+
+.SearchEmployeeButton,
+.EmployeeClearButton {
+	height: 40px;
+	width: 100px;
+	font-size: 25px;
+	font-weight: normal;
+}
+
+.SearchEmployeeButton{
+	visibility: hidden; 
+}
+
+.stcCustomMessage{
+  	height: calc(20px * 1.5 * 3); /* 1行 = 30px × 3行 */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap : 10px;
+	margin-top: 40px;
+}
+
+.stcCustomMessage .MessageSpan,
+.stcCustomMessage .ErrorMessageSpan
+{
+	font-weight: normal;
+	font-size: 20px;
+}
 
 
+.stcCustomMessage .MessageSpan,
+#stcCustomTimeCardDate,
+#stcCustomTimeCardTime,
+.EmpSearchTitleTd,
+.stcCustomBtn
+{
+	color: #343434;
+}
+
+.stcCustomTime .disabledBtn{
+	background-color: #beceff4d;
+    border: 1px solid rgba(65, 105, 225, 0.308);
+	color: #3434346b;
+	pointer-events: none;
+}
+
+.stcCustomStartBtn{
+	margin-right: 80px;
+}
+
+#recordEmployeeNameBox{
+	border: solid 1px #ccc;
+	border-radius: 4px;
+	background-color: #f2f2f2;
+	display: flex;
+	align-items: center; /* 垂直方向中央揃え */
+	height: 20px;
+	width: 200px;
+    font-size: 25px;
+    font-weight: bold;
+	padding: 10px;
+	margin: 0;
+}
+
+#messageArea_StcCustom,
+#errorMessageArea_StcCustom{
+	display: flex;
+	align-items: center; /* 垂直方向中央揃え */
+  	height: calc(20px * 1.5 * 2); /* 1行 = 30px × 2行 */
+	line-height: 100%;
+	width: 100%;
+    font-size: 30px;
+    font-weight: bold;
+	padding: 10px;
+	margin: 0;
+	justify-content: center;
+}
+
+#errorMessageArea_StcCustom{
+	color: red;
+}
+/* ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/18 打刻画面カスタマイズ-追加　塩見 */

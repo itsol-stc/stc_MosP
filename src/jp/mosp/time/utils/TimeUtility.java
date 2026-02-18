@@ -3390,4 +3390,58 @@ public class TimeUtility {
 		return MonthUtility.getYearMonthLastDate(targetYear, targetMonth);
 	}
 	
+	// ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 -->
+	/**
+	 * ログインユーザーが打刻専用ユーザーか判定する<br>
+	 * 
+	 * @param mospParams  MosP処理情報
+	 * @return 判定結果
+	 */
+	public static boolean isTimeCardOnlyUser(MospParams mospParams) {
+		if (mospParams.getUser() == null) {
+			return false;
+		}
+		String userId = mospParams.getUser().getUserId();
+		String[][] timeCardOnlyUsers = MospUtility.getCodeArray(mospParams, "TimeCardOnlyUsers", false);
+
+		for (String[] user : timeCardOnlyUsers) {
+			if (user[0].equals(userId)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	// ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/3 打刻機能カスタマイズ-追加　塩見 -->
+
+	// ▼ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/19 打刻専用画面　メッセージリフレッシュ機能-追加　塩見 -->
+	/**
+	 * メッセージリフレッシュの秒数を取得してJSPに返す<br>
+	 * 
+	 * @param mospParams  MosP処理情報
+	 * @return リフレッシュ秒数
+	 */
+	public static int getMessageRefreshTime(MospParams mospParams) {
+		// if (mospParams.getUser() == null) {
+		// 	return false;
+		// }
+		// String userId = mospParams.getUser().getUserId();
+		
+		int messageRefleshTime = 10;
+
+		// リフレッシュ秒数を取得する 
+		String[][] messageRefleshTimeList = MospUtility.getCodeArray(mospParams, "MessageRefreshTime", false);
+
+		String messageRefleshTimeStr = messageRefleshTimeList[0][1];
+
+		try {
+			messageRefleshTime = Integer.parseInt(messageRefleshTimeStr);
+		} catch (NumberFormatException e) {
+			System.out.println("数値に変換できません: " + e.getMessage());
+			// エラーログの記録やデフォルト値の設定などの処理を行う
+			messageRefleshTime = 10;
+		}
+
+		return messageRefleshTime;
+	}
+	// ▲ 2026年2月17日　<標準機能切り出し対応>[打刻]2025/6/19 打刻専用画面　メッセージリフレッシュ機能-追加　塩見 -->
 }
