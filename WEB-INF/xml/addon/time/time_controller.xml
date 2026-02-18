@@ -379,4 +379,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<Controller key="TM587*">
 		<ActionClass>jp.mosp.time.settings.action.WorkTypePatternCardAction</ActionClass>
 	</Controller>
+	<!-- ▼ 2026年2月17日　<標準機能切り出し対応>[設定]2025/7/11 ビューワーメニュー追加対応-追加　塩見 -->
+	<Controller key="TM611*">
+		<ActionClass>jp.mosp.time.MViews.action.MviewsCommonAction</ActionClass>
+	</Controller>
+	<Controller key="TM612*">
+		<ActionClass>jp.mosp.time.MViews.action.MviewsCommonAction</ActionClass>
+	</Controller>
+	<Controller key="TM613*">
+		<ActionClass>jp.mosp.time.MViews.action.MviewsCommonAction</ActionClass>
+	</Controller>
+	<Controller key="TM614*">
+		<ActionClass>jp.mosp.time.MViews.action.MviewsCommonAction</ActionClass>
+	</Controller>
+	<Controller key="TM615*">
+		<ActionClass>jp.mosp.time.MViews.action.MviewsCommonAction</ActionClass>
+	</Controller>
+	<Controller key="TM616*">
+		<ActionClass>jp.mosp.time.MViews.action.MviewsCommonAction</ActionClass>
+	</Controller>
+	<Controller key="TM617*">
+		<ActionClass>jp.mosp.time.MViews.action.MviewsCommonAction</ActionClass>
+	</Controller>
+	<Controller key="TM611*">
+		<ActionClass>jp.mosp.time.MViews.action.MviewsCommonAction</ActionClass>
+	</Controller>
+	<!-- ▲ 2026年2月17日　<標準機能切り出し対応>[設定]2025/7/11 ビューワーメニュー追加対応-追加　塩見 -->
 </MosP>

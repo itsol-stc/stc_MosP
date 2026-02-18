@@ -152,4 +152,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<VoClass>jp.mosp.time.settings.vo.WorkTypePatternListVo</VoClass>
 		</Menu>
 	</MainMenu>
+	<!-- ▼ 2026年2月17日　<標準機能切り出し対応>[設定]2025/7/11 ビューワーメニュー追加対応-追加　塩見 -->
+	<MainMenu key="menuMViews">
+		<Menu key="MviewsTop">
+			<Command>TM6110</Command>
+			<VoClass>jp.mosp.time.MViews.vo.MviewsTopVo</VoClass>
+		</Menu>
+	</MainMenu>
+	<!-- ▲ 2026年2月17日　<標準機能切り出し対応>[設定]2025/7/11 ビューワーメニュー追加対応-追加　塩見 -->
 </MosP>

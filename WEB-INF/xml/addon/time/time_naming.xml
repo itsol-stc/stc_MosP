@@ -33,6 +33,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<Naming key="menuTimeSettings">
 		勤怠設定
 	</Naming>
+	<!-- ▼ 2026年2月17日　<標準機能切り出し対応>[設定]2025/7/11 ビューワーメニュー追加対応-追加　塩見 -->
+	<Naming key="menuMViews">
+		業務ツール
+	</Naming>
+	<!-- ▲ 2026年2月17日　<標準機能切り出し対応>[設定]2025/7/11 ビューワーメニュー追加対応-追加　塩見 -->
 	<Naming key="jp.mosp.time.input.vo.AttendanceListVo">
 		勤怠一覧
 	</Naming>
@@ -177,6 +182,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<Naming key="jp.mosp.time.settings.vo.WorkTypePatternCardVo">
 		勤務形態パターン詳細
 	</Naming>
+	<!-- ▼ 2026年2月17日　<標準機能切り出し対応>[設定]2025/7/11 ビューワーメニュー追加対応-追加　塩見 -->
+	<Naming key="jp.mosp.time.MViews.vo.MviewsTopVo">
+		勤怠ビューワー
+	</Naming>
+	<!-- ▲ 2026年2月17日　<標準機能切り出し対応>[設定]2025/7/11 ビューワーメニュー追加対応-追加　塩見 -->
 	<Naming key="AttendanceHumanList">
 		社員別勤怠承認
 	</Naming>

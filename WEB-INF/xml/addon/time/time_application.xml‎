@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE MosP>
+<!-- ▼ 2026年2月17日　<標準機能切り出し対応>[設定]2025/7/11 ビューワーメニュー追加対応-追加　塩見 -->
+<!-- リダイレクト先のURL -->
+<MosP>
+    <Application key="MviewsTop">
+        http://localhost/mview
+    </Application>
+</MosP>

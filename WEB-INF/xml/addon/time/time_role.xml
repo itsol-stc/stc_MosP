@@ -362,6 +362,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<Menu key="WorkTypePatternList">
 			<Index>1580</Index>
 		</Menu>
+		<!-- ▼ 2026年2月17日　<標準機能切り出し対応>[設定]2025/7/11 ビューワーメニュー追加対応-追加　塩見 -->
+		<Menu key="MviewsTop">
+			<Index>1910</Index>
+		</Menu>
+		<!-- ▲ 2026年2月17日　<標準機能切り出し対応>[設定]2025/7/11 ビューワーメニュー追加対応-追加　塩見 -->
 	</Role>
 	<Role key="90">
 		<Menu key="AttendanceList">
@@ -457,5 +462,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<Menu key="WorkTypePatternList">
 			<Index>1580</Index>
 		</Menu>
+		<!-- ▼ 2026年2月17日　<標準機能切り出し対応>[設定]2025/7/11 ビューワーメニュー追加対応-追加　塩見 -->
+		<Menu key="MviewsTop">
+			<Index>1910</Index>
+		</Menu>
+		<!-- ▲ 2026年2月17日　<標準機能切り出し対応>[設定]2025/7/11 ビューワーメニュー追加対応-追加　塩見 -->
 	</Role>
 </MosP>
