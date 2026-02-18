@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- 
+    2025年6月2日　シフト管理メニュー追加のため新規ファイル作成　加藤
+    2025年7月11日　ビューワーメニュー追加-変更　加藤
+-->
+<!DOCTYPE MosP>
+<!-- リダイレクト先のURL -->
+<MosP>
+    <!-- ▼　2026年1月14日　リンク先のURLを本番環境からローカルに変更-変更　塩見 -->
+    <Application key="MviewsTop">
+        http://localhost/mview
+    </Application>
+    <!-- ▲　2026年1月14日　リンク先のURLを本番環境からローカルに変更-変更　塩見 -->
+    <!-- ▼　2026年1月14日　リンク先のURLを本番環境からローカルに変更-変更　塩見 -->
+    <!-- ▼　2025年8月18日　「ビューワー」メニューを「業務ツール」メニューに変更-追加　加藤 -->
+    <Application key="ProsrvVo">
+        http://localhost/mconverter
+    </Application>
+    <!-- ▲　2025年8月18日　「ビューワー」メニューを「業務ツール」メニューに変更-追加　加藤 -->
+    <!-- ▲　2026年1月14日　リンク先のURLを本番環境からローカルに変更-変更　塩見 -->
+    <Application key="MviewsShift">
+        *
+    </Application>
+    <Application key="MviewsFlex">
+        *
+    </Application>
+    <Application key="MviewsUsesHolidays">
+        *
+    </Application>
+    <Application key="MviewsTimeRecord">
+        *
+    </Application>
+    <Application key="MviewsAttendance">
+        *
+    </Application>
+    <Application key="MviewsLateAndLeaveEarlyCheck">
+        *
+    </Application>
+</MosP>

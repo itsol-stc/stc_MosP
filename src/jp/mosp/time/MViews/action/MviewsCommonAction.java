@@ -5,7 +5,6 @@
 */
 package jp.mosp.time.MViews.action;
 
-
 import jp.mosp.framework.base.BaseVo;
 import jp.mosp.framework.base.MospException;
 import jp.mosp.time.MViews.vo.MviewsCommonVo;
